@@ -195,6 +195,12 @@ $(Device/tplink-8mlzma)
   IMAGE/factory.bin := append-rootfs | mktplinkfw factory -C US
 endef
 
+define Device/tl-wdr3600-v1-16m
+  $(Device/tl-wdr3600-v1)
+  $(Device/tplink-16mlzma)
+  DEVICE_TITLE := TP-LINK TL-WDR3600 v1 (16M)
+endef
+
 define Device/tl-wdr4300-v1-il
 $(Device/tplink-8mlzma)
   DEVICE_TITLE := TP-LINK TL-WDR4300 v1 IL
@@ -218,7 +224,7 @@ $(Device/tl-wdr4300-v1)
   DEVICE_TITLE := Mercury MW4530R v1
   TPLINK_HWID := 0x45300001
 endef
-TARGET_DEVICES += tl-wdr3500-v1 tl-wdr3600-v1 tl-wdr4300-v1 tl-wdr4300-v1-il tl-wdr4310-v1 mw4530r-v1
+TARGET_DEVICES += tl-wdr3500-v1 tl-wdr3600-v1 tl-wdr3600-v1-16m tl-wdr4300-v1 tl-wdr4300-v1-il tl-wdr4310-v1 mw4530r-v1
 
 define Device/tl-wdr6500-v2
 $(Device/tplink-8mlzma)
