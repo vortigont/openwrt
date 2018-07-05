@@ -204,6 +204,8 @@ platform_check_image() {
 	wt1520-8M|\
 	wt3020-4M|\
 	wt3020-8M|\
+	wt3020-16M|\
+	wt3020-32M|\
 	wzr-agl300nh|\
 	x5|\
 	x8|\
