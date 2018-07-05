@@ -690,6 +690,36 @@ define Device/nexx_wt3020-8m
 endef
 TARGET_DEVICES += nexx_wt3020-8m
 
+define Device/wt3020-16M
+  DTS := WT3020-16M
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | \
+	poray-header -B WT3020 -F 16M
+  DEVICE_VENDOR := Nexx
+  DEVICE_MODEL := WT3020
+  DEVICE_VARIANT := 16M
+  DEVICE_TITLE := Nexx WT3020 (16MB)
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
+  SUPPORTED_DEVICES += wt3020 wt3020-16M
+endef
+TARGET_DEVICES += wt3020-16M
+
+define Device/wt3020-32M
+  DTS := WT3020-32M
+  IMAGE_SIZE := $(ralink_default_fw_size_32M)
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | \
+	poray-header -B WT3020 -F 32M
+  DEVICE_VENDOR := Nexx
+  DEVICE_MODEL := WT3020
+  DEVICE_VARIANT := 16M
+  DEVICE_TITLE := Nexx WT3020 (32MB)
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
+  SUPPORTED_DEVICES += wt3020 wt3020-32M
+endef
+TARGET_DEVICES += wt3020-32M
+
 define Device/ohyeah_oy-0001
   SOC := mt7620a
   IMAGE_SIZE := 16064k
