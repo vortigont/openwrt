@@ -484,7 +484,9 @@ wndr3700v5)
 	ucidef_set_led_default "power" "POWER" "$boardname:green:power" "0"
 	;;
 wt3020-4M|\
-wt3020-8M)
+wt3020-8M|\
+wt3020-16M|\
+wt3020-32M)
 	ucidef_set_led_default "power" "power" "wt3020:blue:power" "0"
 	;;
 y1)

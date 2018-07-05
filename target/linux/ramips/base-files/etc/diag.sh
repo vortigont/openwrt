@@ -326,7 +326,9 @@ get_status_led() {
 		status_led="wrtnode:blue:indicator"
 		;;
 	wt3020-4M|\
-	wt3020-8M)
+	wt3020-8M|\
+	wt3020-16M|\
+	wt3020-32M)
 		status_led="wt3020:blue:power"
 		;;
 	zbt-cpe102)
