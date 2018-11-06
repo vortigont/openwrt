@@ -293,6 +293,13 @@ define Device/tl-wdr3600-v1
 endef
 TARGET_DEVICES += tl-wdr3600-v1
 
+define Device/tl-wdr3600-v1-16m
+  $(Device/tl-wdr3600-v1)
+  $(Device/tplink-16mlzma)
+  DEVICE_TITLE := TP-LINK TL-WDR3600 v1 (16M)
+endef
+TARGET_DEVICES += tl-wdr3600-v1-16m
+
 define Device/tl-wdr4300-v1
   $(Device/tl-wdr3600-v1)
   DEVICE_TITLE := TP-LINK TL-WDR4300 v1
