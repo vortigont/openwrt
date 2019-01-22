@@ -233,6 +233,15 @@ define Device/dir-320-b1
 endef
 TARGET_DEVICES += dir-320-b1
 
+define Device/dir-320-b1-16M
+  DTS := DIR-320-B1-16M
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := D-Link DIR-320 B1 (16M)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage kmod-scsi-core \
+		kmod-fs-vfat block-mount
+endef
+TARGET_DEVICES += dir-320-b1-16M
+
 define Device/dir-600-b1
   DTS := DIR-600-B1
   IMAGE_SIZE := $(ralink_default_fw_size_4M)
