@@ -663,6 +663,17 @@ define Device/tplink_tl-wr1043nd-v1
 endef
 TARGET_DEVICES += tplink_tl-wr1043nd-v1
 
+define Device/tplink_tl-wr1043nd-v1-16MiB
+  $(Device/tplink-16m)
+  SOC := ar9132
+  DEVICE_MODEL := TL-WR1043N/ND 16MiB
+  DEVICE_VARIANT := v1
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ledtrig-usbport
+  TPLINK_HWID := 0x10430001
+  SUPPORTED_DEVICES += tl-wr1043nd-16MiB
+endef
+TARGET_DEVICES += tplink_tl-wr1043nd-v1-16MiB
+
 define Device/tplink_tl-wr1043nd-v2
   $(Device/tplink-8mlzma)
   SOC := qca9558
