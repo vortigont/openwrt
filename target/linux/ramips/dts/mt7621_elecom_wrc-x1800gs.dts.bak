@@ -109,28 +109,6 @@
 			linux,code = <KEY_WPS_BUTTON>;
 		};
 	};
-
-	/* concatenated mtd device for OpenWRT kernel and UBI */
-	virtual_flash {
-		compatible = "mtd-concat";
-		devices = <&fw1 &fw2 &fw3>;
-
-		partitions {
-			compatible = "fixed-partitions";
-			#address-cells = <1>;
-			#size-cells = <1>;
-
-			partition@0 {
-				label = "kernel";
-				reg = <0x0 0x800000>;
-			};
-
-			partition@800000 {
-				label = "ubi";
-				reg = <0x800000 0x6740000>;
-			};
-		};
-	};
 };
 
 &nand {
@@ -183,54 +161,57 @@
 		};
 
 		/* "RAS1" on stock fw */
-		fw1: partition@3c0000 {
+		partition@3c0000 {
+			compatible = "fixed-partitions";
 			reg = <0x3c0000 0x3240000>;
-			label = "firmware_p1";
+			label = "firmware";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			partition@0 {
+				reg = <0x0 0x800000>;
+				label = "kernel";
+			};
+
+			partition@800000 {
+				reg = <0x800000 0x2a40000>;
+				label = "ubi";
+			};
 		};
 
-		/*
-			stock fw configuration for RAS1
-			it's not used in openwrt, but kept for possible rollback
-		 */
 		partition@3600000 {
 			reg = <0x3600000 0x100000>;
-			label = "stock_cfg1";
+			label = "Config";
+			read-only;
 		};
 
-		/* "RAS2" on stock fw
-			reduced to fit recovery image only,
-			rest of the space reused for UBI in openwrt
-		*/
+		/* "RAS2" on stock fw */
 		partition@3700000 {
-			reg = <0x3700000 0xa00000>;
-			label = "recovery";
+			reg = <0x3700000 0x3240000>;
+			label = "firmware2";
 		};
 
-		/*	unused space in RAS2	*/
-		fw2: partition@4100000 {
-			reg = <0x4100000 0x2840000>;
-			label = "firmware_p2";
-		};
-
-		/*
-			stock fw configuration for RAS2
-			it's not used in openwrt, but kept for possible rollback
-		 */
 		partition@6940000 {
 			reg = <0x6940000 0x100000>;
-			label = "stock_cfg2";
+			label = "Config_2";
+			read-only;
 		};
 
-		/*	used by u-boot to keep active fw number	*/
 		partition@6a40000 {
-			reg = <0x6a40000 0x40000>;
+			reg = <0x6a40000 0x100000>;
 			label = "persist";
 		};
 
-		/*	combined space from 'mesh' and 'backup' partitions in stock image	*/
-		fw3: partition@6a80000 {
-			reg = <0x6B40000 0x14c0000>;
-			label = "firmware_p3";
+		partition@6b40000 {
+			reg = <0x6b40000 0x100000>;
+			label = "mesh";
+			read-only;
+		};
+
+		partition@6c40000 {
+			reg = <0x6c40000 0x1340000>;
+			label = "backup";
+			read-only;
 		};
 	};
 };

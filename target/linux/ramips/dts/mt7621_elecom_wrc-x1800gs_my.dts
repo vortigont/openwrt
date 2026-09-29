@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+/dts-v1/;
+#include "mt7621_elecom_wrc-x1800gs"
+
+/ {
+	model = "ELECOM WRC-X1800GS  (OpenWrt layout)";
+	compatible = "elecom,wrc-x1800gs-wrtlayout", "mediatek,mt7621-soc";
+};
+
+&nand {
+	partitions {
+        /delete-node/ partition@3c0000;     		/* "firmware" on stock fw */
+        /delete-node/ partition@3600000;    		/* "Config" on stock fw */
+		/delete-node/ partition@3700000;    		/* "firmware2" on stock fw */
+		/delete-node/ partition@6940000;    		/* "Config_2" on stock fw */
+		/delete-node/ partition@6b40000;    		/* "mesh" on stock fw */
+		/delete-node/ partition@6c40000;    		/* "backup" on stock fw */
+
+        /* uboot expects to find kernels at 0x3c0000 & 0x3700000
+		   referred to as system 1 & system 2 respectively and it stores
+           boot flags in "persist" partition 
+        */
+
+		partition@3c0000 {
+			reg = <0x3c0000 0x6a40000>;             /* 106.25 MiB */
+			label = "firmware1";
+        };
+
+		partition@6b40000 {
+			reg = <0x6b40000 0x100000>;             /* 106.25 MiB */
+			label = "firmware2";
+		};
+
+    };
+};
